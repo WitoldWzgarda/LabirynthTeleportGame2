@@ -1060,6 +1060,11 @@ MonoBehaviour:
   playerCamera: {fileID: 2017096206}
   portal: {fileID: 211608438}
   otherPortal: {fileID: 1032095869}
+--- !u!20 &1414959660 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4107564785172242703, guid: 00c25a711299fa34b9b059df246c2d83, type: 3}
+  m_PrefabInstance: {fileID: 1660328868}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1520989036 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5472062653437303833, guid: 00c25a711299fa34b9b059df246c2d83, type: 3}
@@ -1153,6 +1158,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00c25a711299fa34b9b059df246c2d83, type: 3}
+--- !u!1 &1660328869 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7383555350270463416, guid: 00c25a711299fa34b9b059df246c2d83, type: 3}
+  m_PrefabInstance: {fileID: 1660328868}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1660328870 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1244828818007256408, guid: 00c25a711299fa34b9b059df246c2d83, type: 3}
+  m_PrefabInstance: {fileID: 1660328868}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1660328871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660328869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d85a44c3f70504f92a8b248aa68794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCamera: {fileID: 1730691923}
+  player: {fileID: 7191511929590704852}
+  myRenderPlane: {fileID: 1660328870}
+  myCollidPlane: {fileID: 1954250321}
+  otherPortal: {fileID: 1730691925}
+  material: {fileID: 2100000, guid: badfb1171ffbc7244b79e34b56da1880, type: 2}
 --- !u!1001 &1730691921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1222,6 +1255,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00c25a711299fa34b9b059df246c2d83, type: 3}
+--- !u!4 &1730691922 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1244828818007256408, guid: 00c25a711299fa34b9b059df246c2d83, type: 3}
+  m_PrefabInstance: {fileID: 1730691921}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1730691923 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4107564785172242703, guid: 00c25a711299fa34b9b059df246c2d83, type: 3}
+  m_PrefabInstance: {fileID: 1730691921}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1730691924 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7383555350270463416, guid: 00c25a711299fa34b9b059df246c2d83, type: 3}
+  m_PrefabInstance: {fileID: 1730691921}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1730691925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730691924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d85a44c3f70504f92a8b248aa68794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCamera: {fileID: 1414959660}
+  player: {fileID: 7191511929590704852}
+  myRenderPlane: {fileID: 1730691922}
+  myCollidPlane: {fileID: 1520989037}
+  otherPortal: {fileID: 1660328871}
+  material: {fileID: 2100000, guid: e40dd4c82b09ac847b77dbfe169e3f2b, type: 2}
 --- !u!1 &1742785358
 GameObject:
   m_ObjectHideFlags: 0
@@ -2036,6 +2102,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d519a7d7a28f89140adce36014bf1081, type: 3}
+--- !u!1 &7191511929590704852 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7191511929321364364, guid: d519a7d7a28f89140adce36014bf1081, type: 3}
+  m_PrefabInstance: {fileID: 7191511929590704851}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7235027224412338219
 PrefabInstance:
   m_ObjectHideFlags: 0

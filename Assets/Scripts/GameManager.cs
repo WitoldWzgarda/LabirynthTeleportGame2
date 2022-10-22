@@ -110,16 +110,6 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("Stopper", freez, 1);
     }
 
-    public void SpeedUp(int time)
-    {
-        Invoke("CancelSpeedUp", time);
-        FindObjectOfType<PlayerController>().speedUp = true;
-    }
-    public void CancelSpeedUp()
-    {
-        FindObjectOfType<PlayerController>().speedUp = false;
-    }
-
     public void AddKey(KeyColor color)
     {
         if (color == KeyColor.Gold)
