@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck; //miejsce na nasz obiekt;
     public LayerMask groundMask; //grupa obiektów które bêd¹ uznawane za teren
 
+    public bool speedUp;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -48,6 +50,9 @@ public class PlayerController : MonoBehaviour
                     speed = 30;
                     break;
             }
+
+            if (speedUp)
+                speed = 35;
         }
 
     }

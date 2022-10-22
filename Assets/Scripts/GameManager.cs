@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public int redKey = 0;
     public int greenKey = 0;
     public int goldKey = 0;
+
+    float startSpeeding;
     // Start is called before the first frame update
     void Start()
     {
@@ -106,6 +108,16 @@ public class GameManager : MonoBehaviour
     {
         CancelInvoke("Stopper");
         InvokeRepeating("Stopper", freez, 1);
+    }
+
+    public void SpeedUp(int time)
+    {
+        Invoke("CancelSpeedUp", time);
+        FindObjectOfType<PlayerController>().speedUp = true;
+    }
+    public void CancelSpeedUp()
+    {
+        FindObjectOfType<PlayerController>().speedUp = false;
     }
 
     public void AddKey(KeyColor color)
