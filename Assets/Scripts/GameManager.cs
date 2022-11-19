@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     public int greenKey = 0;
     public int goldKey = 0;
 
-    float startSpeeding;
     // Start is called before the first frame update
     void Start()
     {
@@ -97,17 +96,20 @@ public class GameManager : MonoBehaviour
     public void AddPoints(int point)
     {
         points += point;
+        Debug.Log("Added points");
     }
 
     public void AddTime(int addTime)
     {
         timeToEnd += addTime;
+        Debug.Log("Added time");
     }
 
     public void FreezTime(int freez)
     {
         CancelInvoke("Stopper");
         InvokeRepeating("Stopper", freez, 1);
+        Debug.Log("Freez time");
     }
 
     public void AddKey(KeyColor color)
@@ -115,13 +117,16 @@ public class GameManager : MonoBehaviour
         if (color == KeyColor.Gold)
         {
             goldKey++;
+            Debug.Log("Added gold key");
         } else if(color == KeyColor.Green)
         {
             greenKey++;
+            Debug.Log("Added green key");
         }
         else if (color == KeyColor.Red)
         {
             redKey++;
+            Debug.Log("Added red key");
         }
     }
 
