@@ -9,6 +9,7 @@ TagManager:
   - PickUp
   - LevelElement
   - wall
+  - Wall
   layers:
   - Default
   - TransparentFX
