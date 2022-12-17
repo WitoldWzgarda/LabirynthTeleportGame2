@@ -12,6 +12,12 @@ public class LevelGenerator : MonoBehaviour
     public Material material02;
     // 2 losowe materialy scian ^
 
+    List<Vector3> BialeKafelki = new List<Vector3>();
+    List<Vector3> ZieloneKafelki = new List<Vector3>();
+    List<Vector3> CzerwoneKafelki = new List<Vector3>();
+    public float procenty = 3;
+    public GameObject[] key;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +48,21 @@ public class LevelGenerator : MonoBehaviour
                 // wylicz pozycje na podstawie piksela 
                 Vector3 position = new Vector3(x, 0, z) * offset;
 
+                if (colorMapping.color == Color.white)
+                {
+                    BialeKafelki.Add(position);
+                }
+
+                if (colorMapping.color == Color.green)
+                {
+                    ZieloneKafelki.Add(position);
+                }
+
+                if (colorMapping.color == Color.red)
+                {
+                    CzerwoneKafelki.Add(position);
+                }
+
                 Instantiate(colorMapping.prefarb, position, Quaternion.identity, transform);
             }
         }
@@ -56,6 +77,19 @@ public class LevelGenerator : MonoBehaviour
                 GenerateTile(x, z);
             }
         }
+
+        for (int i = 0; i < procenty; i++)
+        {
+            int losowa = Random.Range(0, BialeKafelki.Count - 1);
+            Instantiate(key[0], BialeKafelki[losowa], Quaternion.identity, transform);
+
+            losowa = Random.Range(0, ZieloneKafelki.Count - 1);
+            Instantiate(key[1], ZieloneKafelki[losowa], Quaternion.identity, transform);
+
+            losowa = Random.Range(0, CzerwoneKafelki.Count - 1);
+            Instantiate(key[2], CzerwoneKafelki[losowa], Quaternion.identity, transform);
+        }
+
         ColorTheChildren();
     }
 

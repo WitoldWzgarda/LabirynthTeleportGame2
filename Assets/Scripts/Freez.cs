@@ -13,6 +13,7 @@ public class Freez : PickUp
 
     public override void Picked()
     {
+        GameManager.gameManager.PlayClip(GameManager.gameManager.pickClip);
         GameManager.gameManager.FreezTime(freezTime);
         Destroy(this.gameObject);
     }

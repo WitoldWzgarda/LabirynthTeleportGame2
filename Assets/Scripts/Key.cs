@@ -21,6 +21,7 @@ public class Key : PickUp
 
     public override void Picked()
     {
+        GameManager.gameManager.PlayClip(GameManager.gameManager.pickClip);
         GameManager.gameManager.AddKey(color);
         Destroy(this.gameObject);
     }
