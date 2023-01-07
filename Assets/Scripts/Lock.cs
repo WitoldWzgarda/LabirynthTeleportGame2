@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Lock : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Lock : MonoBehaviour
     bool iCanOpen = false;
     bool locked = false;
     Animator key;
+
+    public bool winningPortal;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +21,11 @@ public class Lock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (iCanOpen && !locked) // <--------
+        {
+            GameManager.gameManager.SetUseInfo("Press E to open lock"); // <--------
+        } // <--------
+
         if (Input.GetKeyDown(KeyCode.E) && iCanOpen && !locked)
         {
             key.SetBool("useKey", CheckTheKey());
@@ -29,6 +37,12 @@ public class Lock : MonoBehaviour
         foreach (Door door in doors)
         {
             door.OpenClose();
+
+            if (winningPortal)
+            {
+                GameManager.gameManager.win = true;
+                GameManager.gameManager.EndGame();
+            }
         }
     }
 
@@ -37,18 +51,27 @@ public class Lock : MonoBehaviour
         if (GameManager.gameManager.redKey > 0 && myColor == KeyColor.Red)
         {
             GameManager.gameManager.redKey--;
+
+            GameManager.gameManager.RedKeyText.text = GameManager.gameManager.redKey.ToString(); // <--------
+
             locked = true;
             return true;
         }
         else if (GameManager.gameManager.greenKey > 0 && myColor == KeyColor.Green)
         {
             GameManager.gameManager.greenKey--;
+
+            GameManager.gameManager.GreenKeyText.text = GameManager.gameManager.greenKey.ToString(); // <--------
+
             locked = true;
             return true;
         }
         else if (GameManager.gameManager.goldKey > 0 && myColor == KeyColor.Gold)
         {
             GameManager.gameManager.goldKey--;
+
+            GameManager.gameManager.GoldKeyText.text = GameManager.gameManager.goldKey.ToString(); // <--------
+
             locked = true;
             return true;
         }
@@ -65,6 +88,8 @@ public class Lock : MonoBehaviour
         {
             iCanOpen = true;
             Debug.Log("You can Use lock");
+
+            GameManager.gameManager.SetUseInfo(""); // <--------
         }
     }
 

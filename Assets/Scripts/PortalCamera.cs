@@ -12,7 +12,7 @@ public class PortalCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -26,21 +26,22 @@ public class PortalCamera : MonoBehaviour
         Vector3 playerOffsetFromPortal = playerCamera.position - otherPortal.position;
         transform.position = portal.position + playerOffsetFromPortal;
 
-        float angularDifferenceBetwenPortalRotations = Quaternion.Angle(portal.rotation, otherPortal.rotation);
+        float angularDifferenceBetweenPortalRotations = Quaternion.Angle(portal.rotation, otherPortal.rotation);
         if (myAngle == 90 || myAngle == 270)
         {
-            angularDifferenceBetwenPortalRotations -= 90;
+            angularDifferenceBetweenPortalRotations -= 0;
         }
 
-        Quaternion portalPositionalDiference = Quaternion.AngleAxis(angularDifferenceBetwenPortalRotations, Vector3.up);
+        Quaternion portalRotationalDifference = Quaternion.AngleAxis(angularDifferenceBetweenPortalRotations, Vector3.up);
 
-        Vector3 newCameraDirection = portalPositionalDiference * playerCamera.forward;
+        Vector3 newCameraDirection = portalRotationalDifference * playerCamera.forward;
 
         if (myAngle == 90 || myAngle == 270)
         {
-            newCameraDirection = new Vector3(newCameraDirection.z * -1, newCameraDirection.y , newCameraDirection.x);
+            newCameraDirection = new Vector3(newCameraDirection.z * -1, newCameraDirection.y, newCameraDirection.x);
             transform.rotation = Quaternion.LookRotation(newCameraDirection, Vector3.up);
-        } else
+        }
+        else
         {
             newCameraDirection = new Vector3(newCameraDirection.x * -1, newCameraDirection.y, newCameraDirection.z * -1);
             transform.rotation = Quaternion.LookRotation(newCameraDirection, Vector3.up);

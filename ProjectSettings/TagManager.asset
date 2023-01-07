@@ -10,6 +10,7 @@ TagManager:
   - LevelElement
   - wall
   - Wall
+  - Trap
   layers:
   - Default
   - TransparentFX

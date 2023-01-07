@@ -12,8 +12,11 @@ public class MusicScript : MonoBehaviour
     void Start()
     {
         source = GetComponent<AudioSource>();
-        source.clip = clips[0];
-        source.Play();
+        if(clips.Length != 0)
+        {
+            source.clip = clips[0];
+            source.Play();
+        }
     }
 
     // Update is called once per frame

@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int timeToEnd;
     bool gamePaused = false;
     bool endGame = false;
-    bool win = false;
+    public bool win = false;
     public int points = 0;
 
     public int redKey = 0;
@@ -24,6 +27,27 @@ public class GameManager : MonoBehaviour
 
     public MusicScript musicScript;
     bool lessTime = false;
+
+    public string loseScene;
+    public string winScene;
+
+    public TextMeshProUGUI pointShow;
+    public TextMeshProUGUI keysShow;
+    public TextMeshProUGUI timeShow;
+
+    public Text timeText;
+    public Text GoldKeyText;
+    public Text RedKeyText;
+    public Text GreenKeyText;
+    public Text CrystalText;
+    public Image snowFlake;
+
+    public GameObject infoPanel;
+    public Text useInfo;
+    public Text pauseEnd;
+    public Text reloadInfo;
+    public Text useEnd;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +63,13 @@ public class GameManager : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
         InvokeRepeating("Stopper", 2, 1);
+
+        snowFlake.enabled = false; // <------
+        timeText.text = timeToEnd.ToString(); // <------
+        infoPanel.SetActive(true); // <------
+        pauseEnd.text = "Pause"; // <------
+        reloadInfo.text = ""; // <------
+        SetUseInfo(""); // <------
     }
 
     // Update is called once per frame
@@ -57,8 +88,13 @@ public class GameManager : MonoBehaviour
     void Stopper()
     {
         timeToEnd--;
+        timeShow.text = "Time to end: " + timeToEnd;
         Debug.Log("Time: " + timeToEnd + " s");
-        if(timeToEnd <= 0)
+
+        timeText.text = timeToEnd.ToString(); // <------
+        snowFlake.enabled = false; // <------
+
+        if (timeToEnd <= 0)
         {
             timeToEnd = 0;
             endGame = true;
@@ -83,10 +119,13 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         PlayClip(pauseClip);
+
         musicScript.OnPauseGame();
         Debug.Log("Pause Game");
         Time.timeScale = 0f;
         gamePaused = true;
+
+        infoPanel.SetActive(true); // <-----
     }
 
     public void ResumeGame()
@@ -96,6 +135,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("Resume Game");
         Time.timeScale = 1f;
         gamePaused = false;
+
+        infoPanel.SetActive(false); // <-----
     }
 
     void PauseCheck()
@@ -113,21 +154,42 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        Cursor.lockState = CursorLockMode.None;
         CancelInvoke("Stopper");
-        if(win)
+
+        infoPanel.SetActive(true); // <------
+        if (win)
         {
             PlayClip(winClip);
             Debug.Log("You win!!! Reload?");
+            SceneManager.LoadScene(winScene);
+
+            pauseEnd.text = "You Win!!!"; // <------
+            reloadInfo.text = "Reload? Y/N"; // <------
         } else
         {
             PlayClip(loseClip);
             Debug.Log("You lose!!! Reload?");
+            SceneManager.LoadScene(loseScene);
+
+            pauseEnd.text = "You Lose!!!"; // <------
+            reloadInfo.text = "Reload? Y/N"; // <------
         }
+
     }
+
+    public void SetUseInfo(string info) // <------
+    { // <------
+        useInfo.text = info; // <------
+    } // <------
+
 
     public void AddPoints(int point)
     {
         points += point;
+        pointShow.text = "Crystals: " + points;
+
+        CrystalText.text = points.ToString(); // <-------
         Debug.Log("Added points");
     }
 
@@ -135,6 +197,7 @@ public class GameManager : MonoBehaviour
     {
         timeToEnd += addTime;
         Debug.Log("Added time");
+        timeText.text = timeToEnd.ToString(); // <-------
     }
 
     public void FreezTime(int freez)
@@ -142,6 +205,8 @@ public class GameManager : MonoBehaviour
         CancelInvoke("Stopper");
         InvokeRepeating("Stopper", freez, 1);
         Debug.Log("Freez time");
+
+        snowFlake.enabled = true; // <-------
     }
 
     public void AddKey(KeyColor color)
@@ -150,16 +215,21 @@ public class GameManager : MonoBehaviour
         {
             goldKey++;
             Debug.Log("Added gold key");
+            GoldKeyText.text = goldKey.ToString(); // <-------
         } else if(color == KeyColor.Green)
         {
             greenKey++;
             Debug.Log("Added green key");
+            GreenKeyText.text = greenKey.ToString(); // <-------
         }
         else if (color == KeyColor.Red)
         {
             redKey++;
             Debug.Log("Added red key");
+            RedKeyText.text = redKey.ToString(); // <-------
         }
+
+        keysShow.text = "Red keys: " + redKey + " Green keys: " + greenKey + " Gold keys: " + goldKey;
     }
 
     void PickUpCheck()
